@@ -13,7 +13,7 @@
 			</div>
 
 			<div class="data">
-				<div class="block map"></div>
+				<div class="block block_no-padding map" id="map"></div>
 
 				<div class="block courier">
 					<span class="standard__block-heading">Курьер</span>
@@ -75,7 +75,6 @@
 					<span class="standard__text">Нужно чтобы курьер сказал "Привет от Сереги"</span>
 				</div>
 			</div>
-
 		</div>
 	</main>
 </template>
@@ -83,6 +82,17 @@
 <script>
 export default {
 	name: 'App',
+	mounted() {
+		ymaps.ready(init);
+
+		function init(){
+			const myMap = new ymaps.Map("map", {
+				center: [43.248232, 76.908876],
+				zoom: 12,
+				controls: [], // в макете нет элементов управления, убрал их
+			});
+    	}
+	}
 }
 </script>
 
