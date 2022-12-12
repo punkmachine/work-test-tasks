@@ -31,7 +31,7 @@
 						</div>
 
 						<address class="dot__address">
-							<!-- svg.dot__address-icon -->
+							<img class="dot__address-icon" src="@/assets/icons/geo.svg">
 							<span>Байтурсынова, 134, кв. 5</span>
 						</address>
 
@@ -49,13 +49,13 @@
 						<div class="dot__head">
 							<span class="dot__direction">Куда</span>
 							<button class="dot__direction-status dot__direction-status_btn">
-								<!-- svg.dot__direction-status-icon -->
+								<img class="dot__cancel-icon" src="@/assets/icons/delete.svg">
 								Отменить точку
 							</button>
 						</div>
 
 						<address class="dot__address">
-							<!-- svg.dot__address-icon -->
+							<img class="dot__address-icon" src="@/assets/icons/geo.svg">
 							<span>Байтурсынова, 134, кв. 5</span>
 						</address>
 
@@ -253,6 +253,9 @@ a {
 			font-size: 14px;
 			line-height: 18px;
 			color: #9EA6B4;
+			display: flex;
+			align-items: center;
+			gap: 6px;
 
 			&_btn {
 				background-color: #fff;
@@ -269,6 +272,14 @@ a {
 		color: #2F3747;
 		font-style: normal;
 		margin-bottom: 4px;
+		display: flex;
+    	align-items: center;
+		gap: 8px;
+
+		&-icon {
+			width: 10px;
+			height: auto;
+		}
 	}
 
 	&__contact {
@@ -302,6 +313,11 @@ a {
 		&_green {
 			background-color: #4CAF50;
 		}
+	}
+
+	&__cancel-icon {
+		width: 14px;
+		height: auto;
 	}
 }
 
