@@ -21,45 +21,53 @@
 					<a href="tel:+77054549845" class="standard__text">+7 705 454 98 45</a>
 				</div>
 
-				<div class="block dot dot_read">
-					<div class="dot__head">
-						<span class="dot__direction">Откуда</span>
-						<span class="dot__direction-status">Курьер уехал</span>
-					</div>
+				<div class="block dot">
+					<div class="dot__icon dot__icon_red"></div>
 
-					<address class="dot__address">
-						<!-- svg.dot__address-icon -->
-						<span>Байтурсынова, 134, кв. 5</span>
-					</address>
+					<div class="dot__container">
+						<div class="dot__head">
+							<span class="dot__direction">Откуда</span>
+							<span class="dot__direction-status">Курьер уехал</span>
+						</div>
 
-					<div class="dot__contact">
-						<a href="tel:+77575686557" class="standard__text">+7 757 568 65 57</a>,
-						<span class="standard__text">Дина</span>
+						<address class="dot__address">
+							<!-- svg.dot__address-icon -->
+							<span>Байтурсынова, 134, кв. 5</span>
+						</address>
+
+						<div class="dot__contact">
+							<a href="tel:+77575686557" class="standard__text">+7 757 568 65 57</a>,
+							<span class="standard__text">Дина</span>
+						</div>
 					</div>
 				</div>
 
-				<div class="block dot dot_green">
-					<div class="dot__head">
-						<span class="dot__direction">Куда</span>
-						<button class="dot__direction-status dot__direction-status_btn">
-							<!-- svg.dot__direction-status-icon -->
-							Отменить точку
-						</button>
+				<div class="block dot">
+					<div class="dot__icon dot__icon_green"></div>
+
+					<div class="dot__container">
+						<div class="dot__head">
+							<span class="dot__direction">Куда</span>
+							<button class="dot__direction-status dot__direction-status_btn">
+								<!-- svg.dot__direction-status-icon -->
+								Отменить точку
+							</button>
+						</div>
+
+						<address class="dot__address">
+							<!-- svg.dot__address-icon -->
+							<span>Байтурсынова, 134, кв. 5</span>
+						</address>
+
+						<div class="dot__contact">
+							<a href="tel:+77575686557" class="standard__text">+7 757 568 65 57</a>,
+							<span class="standard__text">Дина</span>
+						</div>
+
+						<p class="standard__text">
+							Подождать примерку, сделать фотографию
+						</p>
 					</div>
-
-					<address class="dot__address">
-						<!-- svg.dot__address-icon -->
-						<span>Байтурсынова, 134, кв. 5</span>
-					</address>
-
-					<div class="dot__contact">
-						<a href="tel:+77575686557" class="standard__text">+7 757 568 65 57</a>,
-						<span class="standard__text">Дина</span>
-					</div>
-
-					<p class="standard__text">
-						Подождать примерку, сделать фотографию
-					</p>
 				</div>
 
 				<div class="block comment">
@@ -147,6 +155,20 @@ a {
 		color: #4CAF50;
 		margin-bottom: 20px;
 		display: block;
+		position: relative;
+		padding-left: 20px;
+
+		&::before {
+			content: '';
+			position: absolute;
+			background-color: #4CAF50;
+			width: 8px;
+			height: 8px;
+			border-radius: 100%;
+			top: 50%;
+			left: 4px;
+			transform: translateY(-50%);
+		}
 	}
 
 	&__tabs {
@@ -209,10 +231,16 @@ a {
 }
 
 .dot {
+	position: relative;
+
 	&__head {
 		display: flex;
 		justify-content: space-between;
 		margin-bottom: 4px;
+	}
+
+	&__container {
+		padding-left: 28px;
 	}
 
 	&__direction {
@@ -245,6 +273,35 @@ a {
 
 	&__contact {
 		margin-bottom: 4px;
+	}
+
+	&__icon {
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		border-radius: 100%;
+		top: 20px;
+		left: 20px;
+
+		&::before {
+			content: '';
+			position: absolute;
+			border-radius: 100%;
+			top: 5px;
+			right: 5px;
+			width: 6px;
+			height: 6px;
+			background-color: #fff;
+			z-index: 10;
+		}
+
+		&_red {
+			background-color: #C90B0B;
+		}
+
+		&_green {
+			background-color: #4CAF50;
+		}
 	}
 }
 
