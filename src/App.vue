@@ -80,17 +80,89 @@
 </template>
 
 <script>
+import courierIcon from '@/assets/icons/courier.svg';
+import dotGray from '@/assets/icons/dot-grey.svg';
+import dotRed from '@/assets/icons/dot-red.svg';
+
 export default {
 	name: 'App',
+	data() {
+		return {
+			initialCourierPos: [43.248232, 76.908876],
+			centerMap: [43.248232, 76.908876],
+			dotsCoords: [],
+		}
+	},
 	mounted() {
 		ymaps.ready(init);
 
-		function init(){
+		function init() {
 			const myMap = new ymaps.Map("map", {
 				center: [43.248232, 76.908876],
-				zoom: 12,
-				controls: [], // в макете нет элементов управления, убрал их
+				zoom: 13,
+				controls: [],
 			});
+
+			const iconContentLayout = ymaps.templateLayoutFactory.createClass(
+            	'<div class="map__icon">$[properties.iconContent]</div>'
+			);
+
+			const courierGetObject = new ymaps.GeoObject(
+				{
+					geometry: {
+						type: "Point",
+						coordinates: [43.248232, 76.908876],
+					},
+				},
+				{
+					iconLayout: 'default#image',
+					iconImageHref: courierIcon,
+					iconImageSize: [32, 32],
+					iconImageOffset: [-32, -32],
+					draggable: false,
+				}
+			);
+
+			const dotsPathCoordsGray = [[43.251650, 76.897466], [43.253854, 76.923418]];
+			const dotsPathCoordsRed = [[43.247023, 76.923242], [43.242266, 76.897817]];
+
+			dotsPathCoordsGray.forEach((coord, index) => {
+				const dotGeoObject = new ymaps.Placemark(
+					coord,
+					{ iconContent: index },
+					{
+						iconLayout: 'default#imageWithContent',
+						iconImageHref: dotGray,
+						iconImageSize: [52, 52],
+						iconImageOffset: [-24, -24],
+						iconContentOffset: [20, 6],
+						draggable: false,
+						iconContentLayout
+					}
+				);
+
+				myMap.geoObjects.add(dotGeoObject);
+			});
+
+			dotsPathCoordsRed.forEach((coord, index) => {
+				const dotGeoObject = new ymaps.Placemark(
+					coord,
+					{ iconContent: index + dotsPathCoordsGray.length },
+					{
+						iconLayout: 'default#imageWithContent',
+						iconImageHref: dotRed,
+						iconImageSize: [52, 52],
+						iconImageOffset: [-24, -24],
+						iconContentOffset: [19, 6],
+						draggable: false,
+						iconContentLayout
+					}
+				);
+
+				myMap.geoObjects.add(dotGeoObject);
+			});
+
+			myMap.geoObjects.add(courierGetObject);
     	}
 	}
 }
