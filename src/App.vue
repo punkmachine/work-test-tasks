@@ -86,19 +86,42 @@ import dotRed from '@/assets/icons/dot-red.svg';
 
 export default {
 	name: 'App',
-	data() {
-		return {
-			initialCourierPos: [43.248232, 76.908876],
-			centerMap: [43.248232, 76.908876],
-			dotsCoords: [],
-		}
-	},
 	mounted() {
+		const initialCourierPos = [43.248232, 76.908876];
+		const centerMap = [43.248232, 76.908876];
+
+		const dotsPathCoordsGray = [{ number: 1, coord: [43.251650, 76.897466] }, { number: 2, coord: [43.253854, 76.923418] }];
+		const dotsPathCoordsRed = [{ number: 3, coord: [43.247023, 76.923242] }, { number: 4, coord: [43.242266, 76.897817] }];
+
+		const dotsGeoObjectSettings = {
+			iconLayout: 'default#imageWithContent',
+			iconImageSize: [52, 52],
+			iconImageOffset: [-24, -24],
+			iconContentOffset: [20, 6],
+			draggable: false,
+		};
+
 		ymaps.ready(init);
 
 		function init() {
+			function addDots(arrayDots, icon) {
+				arrayDots.forEach(item => {
+					const dotGeoObject = new ymaps.Placemark(
+						item.coord,
+						{ iconContent: item.number },
+						{
+							...dotsGeoObjectSettings,
+							iconImageHref: icon,
+							iconContentLayout
+						}
+					);
+
+					myMap.geoObjects.add(dotGeoObject);
+				});
+			}
+
 			const myMap = new ymaps.Map("map", {
-				center: [43.248232, 76.908876],
+				center: centerMap,
 				zoom: 13,
 				controls: [],
 			});
@@ -111,7 +134,7 @@ export default {
 				{
 					geometry: {
 						type: "Point",
-						coordinates: [43.248232, 76.908876],
+						coordinates: initialCourierPos,
 					},
 				},
 				{
@@ -123,44 +146,8 @@ export default {
 				}
 			);
 
-			const dotsPathCoordsGray = [[43.251650, 76.897466], [43.253854, 76.923418]];
-			const dotsPathCoordsRed = [[43.247023, 76.923242], [43.242266, 76.897817]];
-
-			dotsPathCoordsGray.forEach((coord, index) => {
-				const dotGeoObject = new ymaps.Placemark(
-					coord,
-					{ iconContent: index },
-					{
-						iconLayout: 'default#imageWithContent',
-						iconImageHref: dotGray,
-						iconImageSize: [52, 52],
-						iconImageOffset: [-24, -24],
-						iconContentOffset: [20, 6],
-						draggable: false,
-						iconContentLayout
-					}
-				);
-
-				myMap.geoObjects.add(dotGeoObject);
-			});
-
-			dotsPathCoordsRed.forEach((coord, index) => {
-				const dotGeoObject = new ymaps.Placemark(
-					coord,
-					{ iconContent: index + dotsPathCoordsGray.length },
-					{
-						iconLayout: 'default#imageWithContent',
-						iconImageHref: dotRed,
-						iconImageSize: [52, 52],
-						iconImageOffset: [-24, -24],
-						iconContentOffset: [19, 6],
-						draggable: false,
-						iconContentLayout
-					}
-				);
-
-				myMap.geoObjects.add(dotGeoObject);
-			});
+			addDots(dotsPathCoordsGray, dotGray);
+			addDots(dotsPathCoordsRed, dotRed);
 
 			myMap.geoObjects.add(courierGetObject);
     	}
