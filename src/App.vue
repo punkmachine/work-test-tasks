@@ -86,6 +86,11 @@ import dotRed from '@/assets/icons/dot-red.svg';
 
 export default {
 	name: 'App',
+	data() {
+		return {
+			timer: null,
+		}
+	},
 	mounted() {
 		const initialCourierPos = [43.248232, 76.908876];
 		const centerMap = [43.248232, 76.908876];
@@ -130,13 +135,9 @@ export default {
             	'<div class="map__icon">$[properties.iconContent]</div>'
 			);
 
-			const courierGetObject = new ymaps.GeoObject(
-				{
-					geometry: {
-						type: "Point",
-						coordinates: initialCourierPos,
-					},
-				},
+			const courierGetObject = new ymaps.Placemark(
+				initialCourierPos,
+				{},
 				{
 					iconLayout: 'default#image',
 					iconImageHref: courierIcon,
@@ -150,7 +151,15 @@ export default {
 			addDots(dotsPathCoordsRed, dotRed);
 
 			myMap.geoObjects.add(courierGetObject);
+
+			this.timer = setInterval(() => {
+				const currentCoordinates = courierGetObject.geometry.getCoordinates();
+				courierGetObject.geometry.setCoordinates([parseFloat(currentCoordinates[0] + 0.000001).toFixed(6), parseFloat(currentCoordinates[1] - 0.000013).toFixed(6)]);
+			}, 15);
     	}
+	},
+	beforeDestroy() {
+		clearInterval(this.timer);
 	}
 }
 </script>
