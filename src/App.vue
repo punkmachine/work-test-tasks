@@ -95,7 +95,7 @@ export default {
 		const initialCourierPos = [43.248232, 76.908876];
 		const centerMap = [43.248232, 76.908876];
 
-		const dotsPathCoordsGray = [{ number: 1, coord: [43.251650, 76.897466] }, { number: 2, coord: [43.253854, 76.923418] }];
+		const dotsPathCoordsGray = [{ number: 1, coord: [43.251286, 76.881486] }, { number: 2, coord: [43.253854, 76.923418] }];
 		const dotsPathCoordsRed = [{ number: 3, coord: [43.247023, 76.923242] }, { number: 4, coord: [43.242266, 76.897817] }];
 
 		const dotsGeoObjectSettings = {
@@ -155,7 +155,7 @@ export default {
 			this.timer = setInterval(() => {
 				const currentCoordinates = courierGetObject.geometry.getCoordinates();
 				courierGetObject.geometry.setCoordinates([parseFloat(currentCoordinates[0] + 0.000001).toFixed(6), parseFloat(currentCoordinates[1] - 0.000013).toFixed(6)]);
-			}, 15);
+			}, 10);
     	}
 	},
 	beforeDestroy() {
