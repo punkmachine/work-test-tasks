@@ -1,20 +1,35 @@
 # webest
 
-This template should help get you started developing with Vue 3 in Vite.
+## Чек-лист.
+- [x] Использование фреймворка Vue 3 Composition API + Vue Router.
+- [x] Типизация данных с помощью TypeScript.
+- [x] На странице списка тендеров отображать по 30 элементов в сетке по 5 элементов в строке.
+- [x] Данные из API для рендера допускается использовать не все, только основные (title, description и т.п).
+- [x] Реализовать компонент пагинатора, связать его с API.
+- [x] При пагинации рендер карточек должен быть анимирован с помощью компонента <Transition />.
+- [x] При переключении страницы прокручивать страницу к началу списка.
+- [x] Реализовать компонент с формой поиска. Поиск необходимо осуществлять по названию тендера.
+- [x] Осуществить плавный переход в детальную тендера, например, fade-эффект, но допускается креативность. При переходах не должно быть никаких скачков или неуместных смещений элементов на странице.
+- [x] При работе с API не допускается использование сторонних библиотек. Строго использовать Fetch API. Реализовать обработку ошибок.
+- [x] Для стилизации использовать CSS-препроцессор SASS в синтаксисе SCSS.
+- [x] Запрещается использовать любые библиотеки с готовыми компонентами или функциями.
+- [x] На детальной странице должна быть кнопка “Назад” которая осуществляет переход на главную страницу со списком.
 
-## Recommended IDE Setup
+## Пояснения.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- На странице списка тендеров по апи приходило 100 элементов, решил сделать IntersectionObserver, чтобы подгружать остальные по анимации, думаю что на production был бы query-параметр limit на backend, чтобы получать нужное количество элементов.
+- Сделал бы фильтрацию, если бы позволял backend. Этого не было в изначальной ТЗ, но сделать относительно просто, но т.к. всех данных не имею, то и делать её бессмысленно по одной странице.
 
 ## Project Setup
+
+### Need Env
+
+node.js: 20+ version;
+pnpm: 8+ version;
+
+```env
+VITE_APP_BASE_API_URL=<your_api>
+```
 
 ```sh
 pnpm install

@@ -1,6 +1,6 @@
 # File created using '.gitignore Generator' for Visual Studio Code: https://bit.ly/vscode-gig
-# Created by https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,angular,astro,macos,nextjs,node,nuxtjs,react,svelte,vue,vuejs,webstorm
-# Edit at https://www.toptal.com/developers/gitignore?templates=windows,visualstudiocode,angular,astro,macos,nextjs,node,nuxtjs,react,svelte,vue,vuejs,webstorm
+# Created by https://www.toptal.com/developers/gitignore/api/windows,webstorm,vuejs,vue,visualstudiocode,svelte,react,nuxtjs,node,nextjs,macos,astro,angular,dotenv
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,webstorm,vuejs,vue,visualstudiocode,svelte,react,nuxtjs,node,nextjs,macos,astro,angular,dotenv
 
 ### Angular ###
 ## Angular ##
@@ -38,6 +38,9 @@ e2e/*.map
 # Gitignore template for Astro projects
 # Ignore content collection generated files
 .astro
+
+### dotenv ###
+.env
 
 ### macOS ###
 # General
@@ -176,7 +179,6 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variable files
-.env
 .env.development.local
 .env.test.local
 .env.production.local
@@ -444,7 +446,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,angular,astro,macos,nextjs,node,nuxtjs,react,svelte,vue,vuejs,webstorm
+# End of https://www.toptal.com/developers/gitignore/api/windows,webstorm,vuejs,vue,visualstudiocode,svelte,react,nuxtjs,node,nextjs,macos,astro,angular,dotenv
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 
